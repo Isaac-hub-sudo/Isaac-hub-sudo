@@ -3,52 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Pagamento</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-functions.js"></script>
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="script.js" defer></script>
     <div class="container">
         <div class="payment-card">
-            <h1>Finalizar Pagamento</h1>
-            <div class="price-tag">
-                <span>Total a pagar:</span>
-                <h2>R$ 99,90</h2>
+            <h1>Faça seu Pagamento</h1>
+
+            <div class="form-group">
+                <label for="amount">Valor a pagar (R$)</label>
+                <input type="number" id="amount" placeholder="Ex: 50.00" step="0.01" min="0">
             </div>
 
             <div class="payment-methods">
-                <h3>Escolha a forma de pagamento</h3>
+                <h3>Escolha o método de pagamento</h3>
                 <div class="method-selector">
-                    <button class="method-btn active" data-method="pix">
-                        <img src="assets/pix-icon.svg" alt="PIX">
-                        <span>PIX</span>
-                    </button>
-                    <button class="method-btn" data-method="card">
-                        <img src="assets/card-icon.svg" alt="Cartão">
-                        <span>Cartão</span>
-                    </button>
+                    <button class="method-btn active" data-method="pix">PIX</button>
+                    <button class="method-btn" data-method="card">Cartão</button>
                 </div>
             </div>
 
             <!-- Formulário PIX -->
             <div id="pix-form" class="payment-form active">
+                <h3>Pague via PIX</h3>
                 <div class="qr-container">
-                    <img src="assets/qr-code-example.svg" alt="QR Code PIX" id="qr-code">
-                    <button class="copy-btn" id="copy-pix">Copiar código PIX</button>
-                </div>
-                <div class="instructions">
-                    <p>1. Abra seu aplicativo de pagamento</p>
-                    <p>2. Escaneie o QR Code ou cole o código</p>
-                    <p>3. Confirme o pagamento</p>
+                    <img src="assets/qr-code-placeholder.svg" alt="QR Code PIX">
+                    <button class="copy-btn">Copiar código PIX</button>
                 </div>
             </div>
 
             <!-- Formulário Cartão -->
             <div id="card-form" class="payment-form">
-                <form id="payment-form">
+                <form id="card-payment-form">
                     <div class="form-group">
                         <label for="card-number">Número do Cartão</label>
                         <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
@@ -67,24 +54,13 @@
                             <input type="text" id="card-cvv" placeholder="123" maxlength="3">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="installments">Parcelas</label>
-                        <select id="installments">
-                            <option value="1">1x de R$ 99,90 sem juros</option>
-                            <option value="2">2x de R$ 49,95 sem juros</option>
-                            <option value="3">3x de R$ 33,30 sem juros</option>
-                        </select>
-                    </div>
                     <button type="submit" class="pay-button">Pagar Agora</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Loading e mensagens -->
-    <div class="overlay" id="loading-overlay">
-        <div class="loader"></div>
-    </div>
-    <div class="message-box" id="message-box"></div>
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
 </body>
 </html>
